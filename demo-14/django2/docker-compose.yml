@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+    web2:
+        build: .
+        command: gunicorn demo.wsgi:application --bind 0.0.0.0:8000
+        volumes:
+            - ./:/usr/src/app/
+            # - static_files:/usr/src/app/staticfiles
+        expose:
+            - 8000
+        ports:
+          - 8000:8000
+          
+networks:
+    default:
+        external: false
+        name: web2_net

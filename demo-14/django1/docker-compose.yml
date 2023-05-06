@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+    web1:
+        build: .
+        command: gunicorn demo.wsgi:application --bind 0.0.0.0:8000
+        volumes:
+            - ./:/usr/src/app/
+            # - static_files:/usr/src/app/staticfiles
+        expose:
+            - 8001
+        ports:
+          - 8001:8000
+
+networks:
+    default:
+        external: false
+        name: web1_net
+

@@ -1,0 +1,10 @@
+services: 
+  deliveries:
+    image: nginx:1.15-alpine
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - ./fourth_delivery:/var/www/files
+      - ./.htpasswd:/etc/nginx/.htpasswd
+      - ./nginx/:/etc/nginx/conf.d

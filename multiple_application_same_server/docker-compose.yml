@@ -1,0 +1,25 @@
+services: 
+  corpus-dev:
+    image: nginx:1.15-alpine
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./certificates/nginx:/usr/share/nginx
+      - ./config:/etc/nginx/conf.d
+    networks:
+      - label_hub_bridge_prod
+      - corpus_dashboard_bridge
+      - downstream_bridge 
+
+      
+networks:
+    label_hub_bridge_prod:
+        external: true
+    corpus_dashboard_bridge:
+        external: true
+    downstream_bridge:
+        external: true
+    
+
